@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>ピチューはどっち</h1>
+    <button onclick="start()">スタート</button>
+    <!-- 画像 -->
+    <img id="img1" class=yespichu style="display:none" onclick="imghantei(event)"></img>
+
+    <img id="img2"  class=nopichu style="display:none" onclick="imghantei(event)"></img>
+
+    <p id="seikai" style="display:none">これはピチューです</p>
+    <p id="huseikai" style="display:none">これはピチューじゃないよー</p>
+    <p id="marukazu"></p>
+    <p id="batukazu"></p>
+
+
+    <script>
+        //宣言まとめ
+        const img1 = document.getElementById("img1")
+        const img2 = document.getElementById("img2")
+        const maru = document.getElementById("seikai")
+        const batu = document.getElementById("huseikai")
+        const random1 = 0
+        const random2 = 0
+        const mondairandom1 = 0
+        const mondairandom2 = 0
+        let a = 0
+        let b = 0
+        let marucount=0
+        let batucount=0
+        const marusuu = document.getElementById("marukazu")
+        const batusuu = document.getElementById("batukazu")
+        let gamestart=0
+
+        //ボタンが押された時の処理
+        function start(){
+            gamestart=1
+            img1.style.display = "block"
+            img2.style.display = "block"
+     
+        //問題のランダム表示    
+            const a = Math.floor(Math.random() * 2)
+            if (a == 1) {
+                const random1 = Math.floor(Math.random() * 3)
+                const random2 = Math.floor(Math.random() * 3)
+                img1.src = `C:/Users/futur/OneDrive/ドキュメント/programming/2年前期ゲームプログラミング/which/images/yespichu/pichu${random1}.png`
+                img2.src = `C:/Users/futur/OneDrive/ドキュメント/programming/2年前期ゲームプログラミング/which/images/nopichu/nopichu${random2}.png`
+            } else {
+                const random1 = Math.floor(Math.random() * 3)
+                const random2 = Math.floor(Math.random() * 3)
+                img2.src = `C:/Users/futur/OneDrive/ドキュメント/programming/2年前期ゲームプログラミング/which/images/yespichu/pichu${random1}.png`
+                img1.src = `C:/Users/futur/OneDrive/ドキュメント/programming/2年前期ゲームプログラミング/which/images/nopichu/nopichu${random2}.png`
+
+
+            }
+
+            console.log(img1.id)
+            console.log(img2.id)
+             //画像の正誤判定
+       
+
+
+        }
+        function imghantei(event) {
+            if (gamestart==0){return}
+            
+        
+            const clickimg = event.target.src
+            const ispichu = clickimg.includes("yes")
+            gamestart = 0
+
+            if (ispichu == true) {
+                console.log("正解")
+                maru.style.display = "block"
+                marucount+=1
+            } else {
+                console.log("ぶっぶー")
+                batu.style.display = "block"
+                batucount+=1
+            
+        }
+            console.log(marucount)
+            console.log(batucount)
+            marusuu.textContent=marucount
+            batusuu.textContent=batucount
+            gamestart= 0
+            setTimeout(start,2000)
+            
+
+            
+        }
+        // function start() {
+        //     restart()
+        // }
+
+
+       
+
+    </script>
+</body>
+
+</html>
